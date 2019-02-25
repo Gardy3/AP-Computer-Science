@@ -12,6 +12,8 @@ public class Tester {
 		System.out.println("quadratic vertex: " + mathObj.quadratic(3, 6, 7)[0] + ", " + mathObj.quadratic(3, 6, 7)[1]);
 		System.out.println("rect: " + mathObj.rectArea(5, 6));
 		System.out.println("tri: " + mathObj.triArea(4, 5));
+		
+		//push test
 	}
 
 }
