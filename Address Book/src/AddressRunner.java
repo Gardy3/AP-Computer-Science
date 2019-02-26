@@ -28,13 +28,13 @@ public class AddressRunner {
 			add();
 		}
 		else if(selection == 2){
-			delete();
+			//delete();
 		}
 		else if(selection == 3){
-			view();
+			//view();
 		}
 		else if(selection == 4){
-			exit();
+			//exit();
 		}
 		
 		
