@@ -16,7 +16,11 @@ public class Bank {
 		while(open){
 			System.out.println("Welcome to the bank!");
 			System.out.println("Enter an option:\n1. Login\n2. Create an Account\n3. Exit");
-			int selection = input.nextInt();
+			int select = input.nextInt();
+			if(select == 1){
+				//login();
+			}
+			
 		}
 	}
  
