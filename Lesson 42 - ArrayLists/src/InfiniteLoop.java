@@ -8,7 +8,7 @@ public class InfiniteLoop {
 		Scanner input = new Scanner(System.in);
 		while(true){
 			System.out.print("enter something: ");
-			userStrings.add(input.nextLine());
+			userStrings.add(0, input.nextLine());
 		}
 	}
 }
