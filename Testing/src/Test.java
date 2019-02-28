@@ -1,14 +1,10 @@
+import java.util.ArrayList;
 
 public class Test {
 	public static void main(String[] args){
-		double experimental = 0;
-		for(int i = 0; i < 15; i++){
-			experimental += (1.0/factorial(i));
-			//System.out.println(factorial(i));
-		}
-		System.out.println(experimental==Math.E);
-		System.out.println(experimental);
-		System.out.println(Math.E);
+		ArrayList x = new ArrayList();
+		x.add(2, 3);
+		System.out.println(x);
 	}
 	
 	public static int factorial(int n){
