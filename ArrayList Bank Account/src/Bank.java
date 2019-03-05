@@ -23,8 +23,7 @@ public class Bank {
 			} else if (selection == 2) {
 				createAccount();
 			} else if (selection == 3) {
-				open = false;
-				System.out.println("Goodbye!");
+				exit();
 			} else {
 				System.out.println("Invalid option.");
 			}
@@ -174,13 +173,17 @@ public class Bank {
 				break;
 			}
 		}
-		
 	}
 	
 	public void clearScreen(){
 		for(int i = 0; i < 50; i++){
 			System.out.println();
 		}
+	}
+	
+	public void exit(){
+		open = false;
+		System.out.println("Goodbye!");
 	}
  
 }
