@@ -72,20 +72,22 @@ public class Bank {
 		while (login) {
 			clearScreen();
 			System.out.println("\nWelcome " + account.getName() + "!");
-			System.out.println("Your balance is $" + account.getBalance());
 			System.out.println("Select an option:");
-			System.out.println("1. Deposit\n2. Withdraw\n3. Close Account\n4. Logout");
+			System.out.println("1. View Balance\n2. Deposit\n3. Withdraw\n4. Close Account\n5. Logout");
 			int selection = input.nextInt();
 			if(selection == 1){
-				inputDeposit(account);
+				
 			}
 			else if(selection == 2){
-				inputWithdraw(account);
+				inputDeposit(account);
 			}
 			else if(selection == 3){
-				closeAccount(account);
+				inputWithdraw(account);
 			}
 			else if(selection == 4){
+				closeAccount(account);
+			}
+			else if(selection == 5){
 				logout(account);
 			}
 			else{
@@ -98,12 +100,18 @@ public class Bank {
 		clearScreen();
 		System.out.print("Enter amount to deposit: ");
 		account.deposit(input.nextDouble());
+		input.nextLine();
+		System.out.println("Success. Press enter to continue.");
+		input.nextLine();
 	}
 	
 	public void inputWithdraw(BankAccount account){
 		clearScreen();
 		System.out.print("Enter amount to withdraw: ");
 		account.withdraw(input.nextDouble());
+		input.nextLine();
+		System.out.println("Success. Press enter to continue.");
+		input.nextLine();
 	}
 	
 	public void closeAccount(BankAccount account){
@@ -125,6 +133,8 @@ public class Bank {
 		if(delete){
 			clients.remove(account);
 			login = false;
+			System.out.println("Account closed. Press enter to continue.");
+			input.nextLine();
 		}
 	}
 	
@@ -169,7 +179,8 @@ public class Bank {
 			}
 			else {
 				clients.add(new BankAccount(newName, 0));
-				System.out.println("Account created!");
+				System.out.println("Account created! Press enter to continue.");
+				input.nextLine();
 				break;
 			}
 		}
