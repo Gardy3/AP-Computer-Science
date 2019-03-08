@@ -2,16 +2,17 @@
 import java.util.*;
 public class Bank {
 	
-	private ArrayList<BankAccount> clients = new ArrayList<>();
-	private Scanner input = new Scanner(System.in);
-	private boolean open;
-	private boolean login;
+	private ArrayList<BankAccount> clients = new ArrayList<>(); //Arraylist to hold BankAccount objects (clients)
+	private Scanner input = new Scanner(System.in); //input Scanner
+	private boolean open; //The program will run while this is true and the first menu is open
+	private boolean login; //Set to true when a user is logged in
 	
 	public static void main(String[] args){
 		Bank bank = new Bank();
 		bank.openBank();
 	}
 	
+	//Displays the menu that shows before you log into the bank, giving you the option to login, create account, or exit
 	private void openBank(){
 		open = true;
 		while(open){
@@ -31,6 +32,7 @@ public class Bank {
 		}
 	}
 	
+	//Allows you to login to a prexisting account
 	private void login(){
 		boolean loginMenu = true;
 		input.nextLine();
@@ -68,6 +70,8 @@ public class Bank {
 	
 	}
 	
+	//After logging in, this menu provides the options to update parts of your personal account, including
+	//view balance, deposit, withdraw, close account, and logout
 	public void accountMenu(BankAccount account) {
 		login = true;
 		while (login) {
@@ -77,7 +81,7 @@ public class Bank {
 			System.out.println("1. View Balance\n2. Deposit\n3. Withdraw\n4. Close Account\n5. Logout");
 			int selection = input.nextInt();
 			if(selection == 1){
-				
+				viewBalance(account);
 			}
 			else if(selection == 2){
 				inputDeposit(account);
@@ -97,6 +101,14 @@ public class Bank {
 		}
 	}
 	
+	//Displays the balance of the account
+	public void viewBalance(BankAccount account){
+		System.out.println("Your balance is: " + account.getBalance());
+		System.out.println("Press enter to continue.");
+		input.nextLine();
+	}
+	
+	//Tells person to enter money to deposit and uses deposit method to do so
 	public void inputDeposit(BankAccount account){
 		clearScreen();
 		System.out.print("Enter amount to deposit: ");
@@ -106,6 +118,7 @@ public class Bank {
 		input.nextLine();
 	}
 	
+	//Person inputs amount to withdraw and withdraw method is used from BankAccount
 	public void inputWithdraw(BankAccount account){
 		clearScreen();
 		System.out.print("Enter amount to withdraw: ");
@@ -115,6 +128,7 @@ public class Bank {
 		input.nextLine();
 	}
 	
+	//Ensures that the user wants to close their account, and then closes it
 	public void closeAccount(BankAccount account){
 		boolean delete;
 		input.nextLine();
@@ -139,6 +153,7 @@ public class Bank {
 		}
 	}
 	
+	//logs user out and then loops back to the first menu
 	public void logout(BankAccount account){
 		clearScreen();
 		boolean logout;
@@ -158,10 +173,12 @@ public class Bank {
 		if(logout){
 			System.out.println("Successfully logged out. See you soon, " + account.getName() + "!");
 			login = false;
-			clients.remove(account);
+			System.out.println("Press enter to continue.");
+			input.nextLine();
 		}
 	}
 	
+	//Checks to see if there is already account made with that name and then makes account if there isn't one
 	public void createAccount(){
 		clearScreen();
 		System.out.println("CREATE ACCOUNT MENU");
@@ -187,15 +204,33 @@ public class Bank {
 		}
 	}
 	
+	//Places lots of new lines to clear screen
 	public void clearScreen(){
 		for(int i = 0; i < 50; i++){
 			System.out.println();
 		}
 	}
 	
+	//Causes program to close if user says yes
 	public void exit(){
-		open = false;
-		System.out.println("Goodbye!");
+		boolean close;
+		System.out.println("Are you sure you would like to log out, " + account.getName() + "?");
+		while(true){
+			System.out.print("Enter Y or N: ");
+			char selection = input.nextLine().charAt(0);
+			if(selection == 'y' || selection == 'Y'){
+				close = true;
+				break;
+			}
+			else if(selection == 'n' || selection == 'N'){
+				close = false;
+				break;
+			}
+		}
+		if(close){
+			System.out.println("Goodbye!");
+			open = false;
+		}
 	}
  
 }
