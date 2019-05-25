@@ -78,7 +78,11 @@ public class Card {
 		}
 		return retVal;
 	}
+
 	
+	public boolean isLargerThan(Card card2){
+		return card2.cardVal > this.cardVal;
+	}
 	
 
 }
