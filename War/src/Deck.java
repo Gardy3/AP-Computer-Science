@@ -1,11 +1,11 @@
 import java.util.ArrayList;
 import java.util.Random;
 
-public class CardDeck {
+public class Deck {
 	
 	private ArrayList<Card> deck;
 	
-	public CardDeck(){
+	public Deck(){
 		deck = new ArrayList<Card>();
 		for(int val = 0; val < 13; val++){
 			for(int type = 0; type < 4; type++){
@@ -25,15 +25,16 @@ public class CardDeck {
 		}
 	}
 	
-	public void distribute(ArrayList<Card> hand1, ArrayList<Card> hand2){
-		for(int i = 0; i < deck.size(); i++){
-			if(i % 2 == 0){
-				hand1.add(deck.get(i));
-			}
-			else{
-				hand2.add(deck.get(i));
-			}
-		}
+	public Card getCard(int x){
+		return deck.get(x);
+	}
+	
+	public int size(){
+		return deck.size();
+	}
+	
+	public void setCard(Card x){
+		deck.add(x);
 	}
 	
 }
