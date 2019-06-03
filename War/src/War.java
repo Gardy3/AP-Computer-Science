@@ -26,4 +26,36 @@ public class War {
 			players.get(i % numPlayers).addCard(cardDeck.getCard(i));
 		}
 	}
+	
+	public void flip(){
+		ArrayList<Card> drawnCards = new ArrayList<>();
+		ArrayList<Player> tempPlayers = new ArrayList<>();
+		for(Player player : players){
+			tempPlayers.add(player);
+		}
+		for(int i = 0; i < players.size(); i++){
+			System.out.println(players.get(i).getName() + " drew a " + players.get(i).getCard());
+			drawnCards.add(players.get(i).remove());
+		}
+		ArrayList<Player> winners = compareCards(drawnCards, tempPlayers);
+	}
+	
+	/*
+	public void flip(int startVal, ArrayList<Card> drawnCards, ArrayList<Player> tempPlayers){
+		for(int i = 0; i < players.size(); i++){
+			System.out.println(players.get(i).getName() + " drew a " + players.get(i).getCard());
+			drawnCards.add(players.get(i).remove());
+		}
+		ArrayList<Player> winners = new ArrayList<>();
+	}
+	*/
+	
+	public ArrayList<Player> compareCards(ArrayList<Card> drawnCards, ArrayList<Player> tempPlayers){
+		ArrayList<Player> winners = new ArrayList<>();
+		int maxVal = 0;
+		for(Card card : drawnCards){
+			
+		}
+		return winners;
+	}
 }

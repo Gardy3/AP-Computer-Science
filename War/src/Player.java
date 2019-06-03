@@ -18,13 +18,27 @@ public class Player {
 		return hand.get(0);
 	}
 	
+	public Card getCard(int i){
+		return hand.get(i);
+	}
+	
 	public void addCard(Card x){
 		hand.add(x);
 	}
 	
-	public void setCard(ArrayList<Card> x){
+	public Card remove(){
+		Card temp = hand.get(0);
+		hand.remove(0);
+		return temp;
+	}
+	
+	public void addCard(ArrayList<Card> x){
 		for(Card card : x){
 			hand.add(card);
 		}
+	}
+	
+	public String getName(){
+		return name;
 	}
 }
