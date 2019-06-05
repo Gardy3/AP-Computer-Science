@@ -41,4 +41,8 @@ public class Player {
 	public String getName(){
 		return name;
 	}
+	
+	public ArrayList<Card> getHand(){
+		return hand;
+	}
 }
