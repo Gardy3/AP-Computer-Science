@@ -13,8 +13,7 @@ public class War {
 	}
 	
 	public static void main(String[] args){
-		Card card = new Card(6, 3);
-		System.out.println(card);
+		
 	}
 	
 	public void numPlayers(){
@@ -35,7 +34,6 @@ public class War {
 	}
 	
 	public void flip(){
-		currInd = 0;
 		ArrayList<Card> drawnCards = new ArrayList<>();
 		ArrayList<Player> tempPlayers = new ArrayList<>();
 		ArrayList<Card> countingCards = new ArrayList<>();
@@ -45,7 +43,7 @@ public class War {
 		for(int i = 0; i < players.size(); i++){
 			System.out.println(players.get(i).getName() + " drew a " + players.get(i).getCard());
 			drawnCards.add(players.get(i).getCard(0));
-			countingCards.add(players.get(i).getCard(0));
+			countingCards.remove(players.get(i).getCard(0));
 		}
 		ArrayList<Player> winners = compareCards(countingCards, tempPlayers);
 		if(winners.size() > 1){
@@ -55,7 +53,7 @@ public class War {
 		
 	}
 	
-	
+	/*
 	public void flip(ArrayList<Card> drawnCards, ArrayList<Player> tempPlayers){
 		ArrayList<Card> countingCards = new ArrayList<>();
 		for(int i = 0; i < tempPlayers.size(); i++){
@@ -71,6 +69,7 @@ public class War {
 			
 		}	
 	}
+	*/
 	
 	
 	public ArrayList<Player> compareCards(ArrayList<Card> countingCards, ArrayList<Player> tempPlayers){
@@ -90,7 +89,18 @@ public class War {
 	}
 	
 	public void war(ArrayList<Player> players, ArrayList<Card> drawnCards){
-		currInd += 1;
-		
+		for(Player player : players){
+			int numBurn;
+			if(player.getSize() < 4){
+				numBurn = player.getSize() - 1;
+			}
+			else{
+				numBurn = 3;
+			}
+			for(int i = 0; i < numBurn; i++){
+				drawnCards.add(player.remove());
+				System.out.println(player.getName() + " ");
+			}
+		}
 	}
 }

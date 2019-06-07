@@ -27,9 +27,9 @@ public class Player {
 	}
 	
 	public Card remove(){
-		Card temp = hand.get(0);
-		hand.remove(0);
-		return temp;
+
+		return hand.remove(0);
+
 	}
 	
 	public void addCard(ArrayList<Card> x){
@@ -44,5 +44,9 @@ public class Player {
 	
 	public ArrayList<Card> getHand(){
 		return hand;
+	}
+	
+	public int getSize(){
+		return hand.size();
 	}
 }
