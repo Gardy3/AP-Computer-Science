@@ -26,9 +26,9 @@ public class Player {
 		hand.add(x);
 	}
 	
-	public Card remove(){
+	public Card remove(int x){
 
-		return hand.remove(0);
+		return hand.remove(x);
 
 	}
 	
