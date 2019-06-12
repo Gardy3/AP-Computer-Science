@@ -14,14 +14,14 @@ public class Deck {
 		}
 	}
 	
-	public void shuffle(ArrayList<Card> cards){
+	public void shuffle(){
 		Random rand = new Random();
-		for(int i = 0; i < cards.size() * 2; i++){
-			int index1 = rand.nextInt(cards.size());
-			int index2 = rand.nextInt(cards.size());
-			Card temp = cards.get(index1);
-			cards.set(index1, cards.get(index2));
-			cards.set(index2, temp);
+		for(int i = 0; i < deck.size() * 2; i++){
+			int index1 = rand.nextInt(deck.size());
+			int index2 = rand.nextInt(deck.size());
+			Card temp = deck.get(index1);
+			deck.set(index1, deck.get(index2));
+			deck.set(index2, temp);
 		}
 	}
 	

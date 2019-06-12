@@ -7,24 +7,36 @@ public class War {
 	private Deck cardDeck;
 	private int numPlayers;
 	private int currInd;
+	private boolean gameLoop;
 	
 	public War(){
 	}
 	
 	public static void main(String[] args){
+		War game = new War();
+		game.play();
 	}
 	
 	public void play(){
 		cardDeck = new Deck();
 		numPlayers();
+		cardDeck.shuffle();
 		deal();
-		flip();
+		gameLoop = true;
+		while(gameLoop){
+			flip();
+			checkPlayers();
+			for(Player player : players){
+				System.out.println(player.getName() + ": " + player.getSize());
+			}
+		}
 	}
 	
 	public void numPlayers(){
 		Scanner input = new Scanner(System.in);
 		System.out.print("Input number of players: ");
 		numPlayers = input.nextInt();
+		input.nextLine();
 		for(int i = 0; i < numPlayers; i++){
 			System.out.print("Player " + (i+1) + " name: ");
 			String name = input.nextLine();
@@ -40,10 +52,12 @@ public class War {
 	
 	public void flip(){
 		ArrayList<Card> drawnCards = new ArrayList<>();
+		Scanner input = new Scanner(System.in);
+		input.nextLine();
 		for(int i = 0; i < players.size(); i++){
-			System.out.println(players.get(i).getName() + ": " + players.get(i).getCard());
 			Card played = players.get(i).getCard(0);
 			System.out.println(players.get(i).getName() + ": " + played);
+			drawnCards.add(played);
 			if(players.get(i).getSize() > 1){
 				players.get(i).remove(0);
 			}
@@ -106,7 +120,9 @@ public class War {
 	}
 	
 	public void war(ArrayList<Player> players, ArrayList<Card> drawnCards){
+		Scanner input = new Scanner(System.in);
 		ArrayList<Card> countingCards= new ArrayList<>();
+		input.nextLine();
 		for(Player player : players){
 			int numBurn;
 			if(player.getSize() < 4){
@@ -117,8 +133,8 @@ public class War {
 			}
 			for(int i = 0; i < numBurn; i++){
 				drawnCards.add(player.remove(0));
-				System.out.println(player.getName() + " places " + numBurn + " cards face down.");
 			}
+			System.out.println(player.getName() + " places " + numBurn + " cards face down.");
 		}
 		for(Player player : players){
 			Card played = player.getCard(0);
@@ -156,10 +172,14 @@ public class War {
 	public void checkPlayers(){
 		for(int i = 0; i < players.size(); i++){
 			if(players.get(i).getSize() == 0){
-				System.out.println(players.get(i).getName() + "is out.");
+				System.out.println(players.get(i).getName() + " is out.");
 				players.remove(i);
 				i--;
 			}
+		}
+		if(players.size() == 1 && players.get(0).getSize() == 52){
+			System.out.println(players.get(0).getName() + " won the game!");
+			gameLoop = false;
 		}
 	}
 }
