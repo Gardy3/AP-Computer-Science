@@ -218,6 +218,7 @@ public class War {
 		numOfRounds = 0;
 		
 		for(int i = 0; i < numGames; i++){
+			System.out.println("Game: " + (i+1));
 			for(int j = 0; j < numPlayers; j++){
 				players.add(new Player());
 			}
@@ -229,7 +230,8 @@ public class War {
 			while(gameLoop){
 				autoFlip();
 				checkPlayers();
-			}	
+			}
+			players.remove(0);
 		}
 		System.out.println("Average Rounds: " + (double)numOfRounds/numGames);
 		System.out.println("Average Wars: " + (double)numOfWars/numGames);
@@ -267,10 +269,10 @@ public class War {
 		}
 	}
 	
-	public void autoWar(ArrayList<Player> players, ArrayList<Card> drawnCards){
+	public void autoWar(ArrayList<Player> tempPlayers, ArrayList<Card> drawnCards){
 		numOfWars++;
 		ArrayList<Card> countingCards= new ArrayList<>();
-		for(Player player : players){
+		for(Player player : tempPlayers){
 			int numBurn;
 			if(player.getSize() < 4){
 				numBurn = player.getSize() - 1;
@@ -282,9 +284,8 @@ public class War {
 				drawnCards.add(player.remove(0));
 			}
 		}
-		for(Player player : players){
+		for(Player player : tempPlayers){
 			Card played = player.getCard(0);
-			System.out.println(player.getName() + ": " + played);
 			if(player.getSize() > 1){
 				player.remove(0);
 			}
@@ -293,13 +294,14 @@ public class War {
 				drawnCards.add(played);
 			}
 		}
-		ArrayList<Player> winners = compareCards(countingCards, players);
-		for(int i = 0; i < players.size(); i++){
-			if(!winners.contains(players.get(i))){
-				if(drawnCards.contains(players.get(i).getCard(0))){
-					players.get(i).remove(0);
+		ArrayList<Player> winners = compareCards(countingCards, tempPlayers);
+		System.out.println("hello");
+		for(int i = 0; i < tempPlayers.size(); i++){
+			if(!winners.contains(tempPlayers.get(i))){
+				if(drawnCards.contains(tempPlayers.get(i).getCard(0))){
+					tempPlayers.get(i).remove(0);
 				}
-				players.remove(i);
+				tempPlayers.remove(i);
 				i--;
 			}
 		}
