@@ -77,18 +77,6 @@ public class Card {
 		}
 		return retVal;
 	}
-
 	
-	public boolean isLargerThan(Card card2){
-		return this.cardVal > card2.cardVal;
-	}
-	
-	public boolean isSmallerThan(Card card2){
-		return this.cardVal < card2.cardVal;
-	}
-	
-	public boolean equals(Card card2){
-		return (this.cardVal == card2.cardVal) && (this.cardType == card2.cardType);
-	}
 	
 }
